@@ -1,6 +1,6 @@
 """Models.dev registry integration — primary database for providers and models.
 
-Fetches from https://models.dev/api.json — a community-maintained database
+Fetches from https://models.jabez.co.ke/api.json — a community-maintained database
 of 4000+ models across 109+ providers.  Provides:
 
 - **Provider metadata**: name, base URL, env vars, documentation link
@@ -11,7 +11,7 @@ of 4000+ models across 109+ providers.  Provides:
 Data resolution order (like TypeScript OpenCode):
   1. Bundled snapshot (ships with the package — offline-first)
   2. Disk cache (~/.hermes/models_dev_cache.json)
-  3. Network fetch (https://models.dev/api.json)
+  3. Network fetch (https://models.jabez.co.ke/api.json)
   4. Background refresh every 60 minutes
 
 Other modules should import the dataclasses and query functions from here
@@ -31,7 +31,7 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-MODELS_DEV_URL = "https://models.dev/api.json"
+MODELS_DEV_URL = "https://models.jabez.co.ke/api.json"
 _MODELS_DEV_CACHE_TTL = 3600  # 1 hour in-memory
 
 # In-memory cache

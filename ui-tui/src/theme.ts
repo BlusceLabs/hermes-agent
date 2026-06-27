@@ -261,14 +261,19 @@ export const DARK_THEME: Theme = {
     // Bumped from the old `#B8860B` darkgoldenrod (~53% luminance) which
     // read as barely-visible on dark terminals for long body text.  The
     // new value sits ~60% luminance — readable without losing the "muted /
-    // secondary" semantic.  Field labels still use `label` (65%) which
-    // stays brighter so hierarchy holds.
+    // secondary" semantic.  Field labels use `label` below, which is kept
+    // ~15% brighter than `muted` so the label/body hierarchy holds even
+    // on limited-colour terminals where both quantise to the same ANSI
+    // bucket if too close (design audit §3.1).
     completionBg: '#1a1a2e',
     completionCurrentBg: '#333355',
     completionMetaBg: '#1a1a2e',
     completionMetaCurrentBg: '#333355',
 
-    label: '#DAA520',
+    // Raised from `#DAA520` to `#E8B833` (~72% luminance) so the label/muted
+    // gap is >15% luminance — keeps labels readable as "more important" than
+    // body text without re-darkening `muted` (design audit §3.1).
+    label: '#E8B833',
     ok: '#4caf50',
     error: '#ef5350',
     warn: '#ffa726',
@@ -316,7 +321,9 @@ export const LIGHT_THEME: Theme = {
     completionMetaBg: '#F5F5F5',
     completionMetaCurrentBg: mix('#F5F5F5', '#A0651C', 0.25),
 
-    label: '#7A5A0F',
+    // Raised from `#7A5A0F` so the label/muted luminance gap holds on light
+    // backgrounds too (design audit §3.1).
+    label: '#8F6A12',
     ok: '#2E7D32',
     error: '#C62828',
     warn: '#E65100',

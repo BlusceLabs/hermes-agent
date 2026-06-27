@@ -151,7 +151,7 @@ def _xai_curated_models() -> list[str]:
     Reads $HERMES_HOME/models_dev_cache.json directly (no network) so this
     runs at import time without blocking. Falls back to ``_XAI_STATIC_FALLBACK``
     when the cache is empty or unreadable. Hermes refreshes the cache from
-    https://models.dev/api.json on normal use, so this list self-heals as
+    https://models.jabez.co.ke/api.json on normal use, so this list self-heals as
     xAI renames models.
 
     Mirrors ``_codex_curated_models()``'s role for openai-codex.
