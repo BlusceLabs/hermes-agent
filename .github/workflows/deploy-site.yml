@@ -171,6 +171,10 @@ jobs:
           if [ -f website/build/llms-full.txt ]; then
             cp website/build/llms-full.txt _site/llms-full.txt
           fi
+          # Publish install scripts at /scripts/ so the one-liner curl works.
+          mkdir -p _site/scripts
+          cp scripts/install.sh _site/scripts/
+          cp scripts/install.ps1 _site/scripts/ 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3
