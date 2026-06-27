@@ -708,14 +708,19 @@ export function TranscriptScrollbar({ scrollRef, t }: TranscriptScrollbarProps) 
 
   const s = scrollRef.current
   const scrollable = total > vp
-  const thumb = scrollable ? Math.max(1, Math.round((vp * vp) / total)) : vp
+
+  if (!scrollable) {
+    return null
+  }
+
+  const thumb = Math.max(1, Math.round((vp * vp) / total))
   const travel = Math.max(1, vp - thumb)
-  const thumbTop = scrollable ? Math.round((pos / Math.max(1, total - vp)) * travel) : 0
+  const thumbTop = Math.round((pos / Math.max(1, total - vp)) * travel)
   const thumbColor = grab !== null ? t.color.primary : hover ? t.color.accent : t.color.border
   const trackColor = hover ? t.color.border : t.color.muted
 
   const jump = (row: number, offset: number) => {
-    if (!s || !scrollable) {
+    if (!s) {
       return
     }
 
@@ -744,13 +749,8 @@ export function TranscriptScrollbar({ scrollRef, t }: TranscriptScrollbarProps) 
       }}
       width={1}
     >
-      {!scrollable ? (
-        <Text color={trackColor} dim>
-          {' \n'.repeat(Math.max(0, vp - 1))}{' '}
-        </Text>
-      ) : (
-        <>
-          {thumbTop > 0 ? (
+      <>
+        {thumbTop > 0 ? (
             <Text color={trackColor} dim={!hover}>
               {`${'│\n'.repeat(Math.max(0, thumbTop - 1))}${thumbTop > 0 ? '│' : ''}`}
             </Text>
@@ -764,7 +764,6 @@ export function TranscriptScrollbar({ scrollRef, t }: TranscriptScrollbarProps) 
             </Text>
           ) : null}
         </>
-      )}
     </Box>
   )
 }

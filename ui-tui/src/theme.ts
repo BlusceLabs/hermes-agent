@@ -2,6 +2,7 @@ export interface ThemeColors {
   primary: string
   accent: string
   border: string
+  subtleBorder: string
   text: string
   muted: string
   completionBg: string
@@ -99,7 +100,7 @@ const ANSI_NORMALIZED_FOREGROUNDS: readonly (keyof ThemeColors)[] = [
   'shellDollar'
 ]
 
-const ANSI_MUTED_FOREGROUNDS: readonly (keyof ThemeColors)[] = ['muted', 'sessionLabel', 'sessionBorder']
+const ANSI_MUTED_FOREGROUNDS: readonly (keyof ThemeColors)[] = ['muted', 'sessionLabel', 'sessionBorder', 'subtleBorder']
 
 function xtermEightBitRgb(colorNumber: number): [number, number, number] {
   if (colorNumber >= 232) {
@@ -256,6 +257,7 @@ export const DARK_THEME: Theme = {
     primary: '#FFD700',
     accent: '#FFBF00',
     border: '#CD7F32',
+    subtleBorder: '#8B6A3A',
     text: '#FFF8DC',
     muted: '#CC9B1F',
     // Bumped from the old `#B8860B` darkgoldenrod (~53% luminance) which
@@ -314,6 +316,7 @@ export const LIGHT_THEME: Theme = {
     primary: '#8B6914',
     accent: '#A0651C',
     border: '#7A4F1F',
+    subtleBorder: '#9A7A4A',
     text: '#3D2F13',
     muted: '#7A5A0F',
     completionBg: '#F5F5F5',
@@ -323,7 +326,7 @@ export const LIGHT_THEME: Theme = {
 
     // Raised from `#7A5A0F` so the label/muted luminance gap holds on light
     // backgrounds too (design audit §3.1).
-    label: '#8F6A12',
+    label: '#A07A16',
     ok: '#2E7D32',
     error: '#C62828',
     warn: '#E65100',
@@ -547,6 +550,7 @@ export function fromSkin(
         primary: c('ui_primary') ?? c('banner_title') ?? d.color.primary,
         accent,
         border: c('ui_border') ?? c('banner_border') ?? d.color.border,
+        subtleBorder: c('ui_subtle_border') ?? d.color.subtleBorder,
         text: c('ui_text') ?? c('banner_text') ?? d.color.text,
         muted,
         completionBg,

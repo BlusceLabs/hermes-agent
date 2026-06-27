@@ -178,6 +178,14 @@ const TranscriptPane = memo(function TranscriptPane({
             progress={progress}
             sections={ui.sections}
           />
+
+          {!ui.busy &&
+            transcript.historyItems.length > 0 &&
+            transcript.historyItems[transcript.historyItems.length - 1]?.role === 'assistant' && (
+              <Box flexDirection="row" justifyContent="flex-end" marginTop={1}>
+                <Text color={ui.theme.color.border}>───</Text>
+              </Box>
+            )}
         </Box>
       </ScrollBox>
 

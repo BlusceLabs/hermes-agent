@@ -169,7 +169,7 @@ export function SessionPanel({ info, maxWidth, sid, t }: SessionPanelProps) {
   const strip = (s: string) => (s.endsWith('_tools') ? s.slice(0, -6) : s)
 
   // ── Local collapse state for each section ──
-  const [toolsOpen, setToolsOpen] = useState(true)
+  const [toolsOpen, setToolsOpen] = useState(false)
   const [skillsOpen, setSkillsOpen] = useState(false)
   const [systemOpen, setSystemOpen] = useState(false)
   const [mcpOpen, setMcpOpen] = useState(false)

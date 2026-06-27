@@ -28,12 +28,13 @@
 // already returns its own column Box, so its single-child case was never
 // affected.
 
-import { Box } from '@hermes/ink'
+import { Box, Text } from '@hermes/ink'
 import { memo, useRef } from 'react'
 
 import type { Theme } from '../theme.js'
 
 import { Md } from './markdown.js'
+import { StreamCursor } from './thinking.js'
 
 // Count ``` / ~~~ AND `$$` / `\[…\]` fence toggles in `s` up to `end`. Odd
 // = currently inside a fenced block; splitting the prefix there would
@@ -151,17 +152,28 @@ export const StreamingMd = memo(function StreamingMd({ cols, compact, t, text }:
   const unstableSuffix = text.slice(stablePrefix.length)
 
   if (!stablePrefix) {
-    return <Md cols={cols} compact={compact} t={t} text={unstableSuffix} />
+    return (
+      <Box flexDirection="column">
+        <Md cols={cols} compact={compact} t={t} text={unstableSuffix} />
+        <StreamCursor color={t.color.muted} streaming visible />
+      </Box>
+    )
   }
 
   if (!unstableSuffix) {
-    return <Md cols={cols} compact={compact} t={t} text={stablePrefix} />
+    return (
+      <Box flexDirection="column">
+        <Md cols={cols} compact={compact} t={t} text={stablePrefix} />
+        <StreamCursor color={t.color.muted} streaming visible />
+      </Box>
+    )
   }
 
   return (
     <Box flexDirection="column">
       <Md cols={cols} compact={compact} t={t} text={stablePrefix} />
       <Md cols={cols} compact={compact} t={t} text={unstableSuffix} />
+      <StreamCursor color={t.color.muted} streaming visible />
     </Box>
   )
 })

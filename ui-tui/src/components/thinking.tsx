@@ -190,7 +190,7 @@ function Detail({
   return <TreeTextRow branch={branch} color={color} content={content} dimColor={dimColor} rails={rails} t={t} />
 }
 
-function StreamCursor({
+export function StreamCursor({
   color,
   dimColor,
   streaming = false,
