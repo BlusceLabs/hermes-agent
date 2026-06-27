@@ -7,8 +7,8 @@ const config: Config = {
   tagline: 'The self-improving AI agent',
   favicon: 'img/favicon.ico',
 
-  url: 'https://bluscelabs.github.io/hermes-agent',
-  baseUrl: '/docs/',
+  url: 'https://bluscelabs.github.io',
+  baseUrl: '/hermes-agent/docs/',
 
   organizationName: 'NousResearch',
   projectName: 'hermes-agent',
